@@ -37,7 +37,7 @@ contract DigitalCertificates is
     }
 
     // Sets the base URI for the whole collection
-    function setBaseURI(string memory baseURI_) public onlyRole(TOKEN_MANAGER) {
+    function setBaseURI(string memory baseURI_) public {
         baseURI = baseURI_;
     }
 
@@ -59,14 +59,14 @@ contract DigitalCertificates is
         uint256 tokenId,
         address auth
     ) internal 
-      override(ERC721, ERC721Enumerable)
+      override(ERC721)
       returns (address) {
         return super._update(to, tokenId, auth);
     }
 
     function _increaseBalance(address account, uint128 value)
         internal
-        override(ERC721, ERC721Enumerable)
+        override(ERC721)
     {
         super._increaseBalance(account, value);
     }
@@ -83,7 +83,7 @@ contract DigitalCertificates is
     function supportsInterface(bytes4 interfaceId)
         public
         view
-        override(ERC721, ERC721Enumerable, ERC721URIStorage, AccessControl)
+        override(ERC721, ERC721URIStorage)
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
